@@ -15,6 +15,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="scala-sdk-2.12.8" level="application" />
+    <orderEntry type="library" name="Python 3.7 interpreter library" level="application" />
     <orderEntry type="library" name="Maven: org.scalatest:scalatest_2.12:3.0.5" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.12.4" level="project" />
     <orderEntry type="library" name="Maven: org.scalactic:scalactic_2.12:3.0.5" level="project" />
@@ -32,11 +33,11 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8" level="project" />
     <orderEntry type="library" name="Maven: org.scalaj:scalaj-http_2.12:2.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:12-ea+14" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:mac:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:12-ea+14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:12-ea+14" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:12-ea+14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:12-ea+14" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:12-ea+14" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe.akka:akka-actor_2.12:2.5.22" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe:config:1.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang.modules:scala-java8-compat_2.12:0.8.0" level="project" />
@@ -47,6 +48,5 @@
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.8.1" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20090211" level="project" />
-    <orderEntry type="library" name="Python 3.7 interpreter library" level="application" />
   </component>
 </module>
