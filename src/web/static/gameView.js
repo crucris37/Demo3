@@ -35,7 +35,9 @@ function parseGameState(event) {
 
 var username = "";
 
+
 function initializeGame(inputUsername) {
     username = inputUsername;
+
     socket.emit("register", username);
 }

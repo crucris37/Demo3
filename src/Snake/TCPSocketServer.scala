@@ -36,12 +36,12 @@ class TCPSocketServer(gameActor: ActorRef) extends Actor {
 
     case r: Received =>
       buffer += r.data.utf8String
-      println(buffer)
+      //println(buffer)
       while (buffer.contains(delimiter)) {
         val curr = buffer.substring(0, buffer.indexOf(delimiter))
         buffer = buffer.substring(buffer.indexOf(delimiter) + 1)
         handleMessageFromWebServer(curr)
-        println(curr)
+        //println(curr)
       }
 
     case SendGameState => gameActor ! SendGameState

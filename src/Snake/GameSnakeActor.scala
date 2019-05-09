@@ -1,6 +1,5 @@
 package Snake
 
-import Snake.Database.{createPlayer, playerExists, loadGame}
 import akka.actor.{Actor, ActorRef}
 
 class GameSnakeActor extends Actor {
@@ -11,13 +10,13 @@ class GameSnakeActor extends Actor {
 
   override def receive: Receive = {
     case message: AddPlayer =>
-      if (playerExists(message.username)) {
-        loadGame(message.username, game)
+      if (Database.playerExists(message.username)) {
+        Database.loadGame(message.username, game)
       } else {
         val colorPallet: List[String] = List("red", "blue", "green", "black", "orange", "purple", "grey")
         val randomInt = scala.util.Random
         val color: String = colorPallet(randomInt.nextInt(7))
-        createPlayer(username = message.username, color)
+        Database.createPlayer(username = message.username, color)
         game.addPlayers(message.username, color)
       }
 
@@ -52,3 +51,4 @@ class GameSnakeActor extends Actor {
   }
 
 }
+
