@@ -1,7 +1,6 @@
 package Snake
 
 import java.net.InetSocketAddress
-
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 import akka.io.{IO, Tcp}
 import akka.util.ByteString
@@ -22,7 +21,6 @@ class TCPSocketServer(gameActor: ActorRef) extends Actor {
 
     case b: Bound => println("Listening on port = " + b.localAddress)
 
-
     case c: Connected =>
       println("Client Connected: " + c.remoteAddress)
       this.webServers = this.webServers + sender()
@@ -36,12 +34,12 @@ class TCPSocketServer(gameActor: ActorRef) extends Actor {
 
     case r: Received =>
       buffer += r.data.utf8String
-      //println(buffer)
+      println(buffer)
       while (buffer.contains(delimiter)) {
         val curr = buffer.substring(0, buffer.indexOf(delimiter))
         buffer = buffer.substring(buffer.indexOf(delimiter) + 1)
         handleMessageFromWebServer(curr)
-        //println(curr)
+        println(curr)
       }
 
     case SendGameState => gameActor ! SendGameState
@@ -51,7 +49,7 @@ class TCPSocketServer(gameActor: ActorRef) extends Actor {
 
   def handleMessageFromWebServer(messageString: String): Unit = {
     val message: JsValue = Json.parse(messageString)
-    val username = (message \ "username").as[String]
+    val username  = (message \ "username").as[String]
     val messageType = (message \ "action").as[String]
 
     messageType match {
@@ -64,7 +62,6 @@ class TCPSocketServer(gameActor: ActorRef) extends Actor {
         println("X inside TCP SocketServer = " + x)
         println("Y inside TCP SocketServer = " + y)
         gameActor ! MovePlayer(username, x, y)
-      //case "stop" => gameActor ! StopPlayer(username)
     }
   }
 }
@@ -81,8 +78,8 @@ object TCPSocketServer {
     val gameActor = actorSystem.actorOf(Props(classOf[GameSnakeActor]))
     val server = actorSystem.actorOf(Props(classOf[TCPSocketServer], gameActor))
     //                                 delay           refresh time
-    actorSystem.scheduler.schedule(16.millisecond, 100.millisecond, gameActor, UpdateGame)
-    actorSystem.scheduler.schedule(16.millisecond, 300.millisecond, server, SendGameState)
+    actorSystem.scheduler.schedule(16.millisecond, 300.millisecond, gameActor, UpdateGame)
+    actorSystem.scheduler.schedule(32.millisecond, 300.millisecond, server, SendGameState)
     //    actorSystem.scheduler.schedule(16.millisecond, 32.millisecond, server, SendGameState)
   }
 }
