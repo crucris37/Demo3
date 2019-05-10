@@ -5,8 +5,8 @@ import akka.actor.{Actor, ActorRef}
 
 class GameSnakeActor extends Actor {
 
-//  var players: Map[String, ActorRef] = Map()
-//  var towers: List[ActorRef] = List()
+   //var players: Map[String, ActorRef] = Map()
+  //var towers: List[ActorRef] = List()
 
   val game: SnakeGame = new SnakeGame
 

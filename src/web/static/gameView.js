@@ -14,7 +14,7 @@ function parseGameState(event) {
 
     // w = 1000
     // h = 800
-    ctx.fillRect(5, 5, 500, 500);
+    ctx.fillRect(5, 5, 1000, 800);
 
 
 
