@@ -38,21 +38,6 @@ object AbsSnake {
       xSum = GodSpeed * grid
     }
 
-    if (player.centerX > windowWidth - Size) {
-      translate = 0
-      player.centerX = windowWidth - Size
-    } else if (player.centerY > windowHeight - Size) {
-      translate = 0
-      player.centerY = windowHeight - Size
-    } else if (0 > player.centerX) {
-      translate = 0
-      player.centerX = 0
-    } else if (0 > player.centerY) {
-      translate = 0
-      player.centerY = 0
-    }
-    player.centerX += xSum
-    player.centerY += ySum
 
   }
 }
