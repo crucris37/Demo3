@@ -1,4 +1,4 @@
-package Snake.web_web_Interactions
+package Snake.desktop_desktop_Demo
 
 import io.socket.client.{IO, Socket}
 import io.socket.emitter.Emitter
@@ -12,7 +12,7 @@ import scalafx.scene.paint.Color
 import scalafx.scene.shape.Rectangle
 import scalafx.scene.{Group, Scene}
 
-class HandleMessageFromPython() extends Emitter.Listener {
+class HandleMessageFromPython2() extends Emitter.Listener {
   override def call(objects: Object*): Unit = {
     Platform.runLater(() => {
       var message: String = objects.apply(0).toString
@@ -24,28 +24,33 @@ class HandleMessageFromPython() extends Emitter.Listener {
       var players = (gameState \ "players").as[List[Map[String, JsValue]]]
       for (initialKey <- players) {
         var nameOfPlayer = initialKey("id").as[String]
+        //      println(nameOfPlayer)
         val bodyList = initialKey("body").as[List[Map[String, Double]]]
+        //      println(bodyList)
         val colorName: String = initialKey("color").as[String]
         idToBody = idToBody + (nameOfPlayer -> bodyList)
         idToColor = idToColor + (nameOfPlayer -> colorName)
+        //    println(idToBody)
+        //    println(idToColor)
       }
-      FirstSocket.registerAndMaintainPLayer(idToBody, idToColor)
+      SecondDesktop.registerAndMaintainPLayer(idToBody, idToColor)
     })
   }
 }
 
-object FirstSocket extends JFXApp {
-  var socket: Socket = IO.socket("http://localhost:8080/")
-  val messages = new HandleMessageFromPython
-  socket.on("gameState", messages)
-  socket.connect()
-  socket.emit("register", "charles")
+object SecondDesktop extends JFXApp {
+  var socket2: Socket = IO.socket("http://localhost:8080/")
+  val messages = new HandleMessageFromPython2
+  socket2.on("gameState", messages)
+  socket2.connect()
+  socket2.emit("register", "ricky")
   var sceneGraphics: Group = new Group {}
 
   var allPlayers: Map[String, Rectangle] = Map()
 
 
   def returnColorOption(color: String): Color = {
+    //    List("red", "blue", "green", "black", "orange", "purple", "grey")
     if (color == "red") {
       Color.Red
     } else if (color == "blue") {
@@ -63,6 +68,7 @@ object FirstSocket extends JFXApp {
     }
   }
 
+  //  var listOfRectangle: List[Rectangle] = List()
   var mapOfUserToRectangle: Map[String, Rectangle] = Map()
   var idToBodyInput_2: Map[String, List[Map[String, Double]]] = Map()
 
@@ -82,7 +88,7 @@ object FirstSocket extends JFXApp {
           }
           player.translateX.value = xVar
           player.translateY.value = yVar
-          println("xVar = " + xVar + "| yVar = " + yVar+ "| idOfUser = " + idOfUser)
+          println("xVar = " + xVar + "| yVar = " + yVar + "| idOfUser = " + idOfUser)
           mapOfUserToRectangle = mapOfUserToRectangle + (idOfUser -> player)
           sceneGraphics.children.add(player)
         }
@@ -106,20 +112,20 @@ object FirstSocket extends JFXApp {
           }
         }
       }
-//      else {
-//        sceneGraphics.children.remove(rectangle)
-//        mapOfUserToRectangle = mapOfUserToRectangle - user
-//      }
+      else {
+        sceneGraphics.children.remove(rectangle)
+        mapOfUserToRectangle = mapOfUserToRectangle - user
+      }
     }
     idToBodyInput_2 = idToBodyInput
   }
 
   def inputKey(keyCode: KeyCode): Unit = {
     keyCode.getName match {
-      case "Up"    => socket.emit("keyState", "w", "charles");
-      case "Left"  => socket.emit("keyState", "a", "charles");
-      case "Down"  => socket.emit("keyState", "s", "charles");
-      case "Right" => socket.emit("keyState", "d", "charles");
+      case "Up" => socket2.emit("keyState", "w", "ricky");
+      case "Left" => socket2.emit("keyState", "a", "ricky");
+      case "Down" => socket2.emit("keyState", "s", "ricky");
+      case "Right" => socket2.emit("keyState", "d", "ricky");
       case _ => println("charles" + " pressed with no action")
     }
   }
@@ -127,11 +133,10 @@ object FirstSocket extends JFXApp {
 
   this.stage = new PrimaryStage {
     this.title = "Snake Game!"
+    //    val abstractSnake = new SnakeWithAbstract()
     scene = new Scene(1000, 800) {
       content = List(sceneGraphics)
       addEventHandler(KeyEvent.KEY_PRESSED, (event: KeyEvent) => inputKey(event.getCode))
     }
-    val update: Long => Unit = (time: Long) => {}
-    AnimationTimer(update).start()
   }
 }
