@@ -72,7 +72,6 @@ def key_state(jsonKeyStates):
     elif not key_states["w"] and key_states["s"]:
         y = 1.0
     message = {"username": sidToUsername[request.sid], "action": "move", "x": x, "y": y}
-    # print(message)
     send_to_scala(message)
 
 

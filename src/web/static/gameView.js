@@ -1,9 +1,12 @@
 var socket = io.connect({transports: ['websocket']});
 socket.on('gameState', parseGameState);
 
+//const tileSize = 30;
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 ctx.globalCompositeOperation = 'source-over';
+
 function parseGameState(event) {
     console.log(event);
     var gameState = JSON.parse(event);
@@ -40,10 +43,10 @@ function parseGameState(event) {
     }
 }
 
+
 var username = "";
 
 function initializeGame(inputUsername) {
     username = inputUsername;
-
     socket.emit("register", username);
 }
