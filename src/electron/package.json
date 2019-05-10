@@ -1,0 +1,11 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "desktopapp",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Charlie",
+  "license": "ISC"
+}
