@@ -4,14 +4,12 @@ var keyStates = {
     "s": false,
     "d": false
 };
-
 function setState(key, toSet) {
     if (keyStates[key] !== toSet) {
         keyStates[key] = toSet;
         socket.emit("keyStates", JSON.stringify(keyStates));
     }
 }
-
 function handleEvent(event, toSet) {
     if (event.key === "w" || event.key === "ArrowUp") {
         setState("w", toSet);
