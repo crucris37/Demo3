@@ -10,7 +10,18 @@ function parseGameState(event) {
 
     ctx.beginPath();
     ctx.fillStyle = "#4fcfff";
-    ctx.fillRect(5, 5, 1000, 800);
+    // change width
+
+    // w = 1000
+    // h = 800
+    ctx.fillRect(5, 5, 500, 500);
+
+
+
+
+
+
+
     ctx.stroke();
 
     for (let player of gameState['players']) {

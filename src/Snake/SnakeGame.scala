@@ -8,8 +8,10 @@ import scala.collection.mutable.ArrayBuffer
 
 
 class SnakeGame {
-  val windowWidth: Int = 1000
-  val windowHeight: Int = 800
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  val windowWidth: Int = 500
+  val windowHeight: Int = 500
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
   val allPellets: ArrayBuffer[Pellet] = ArrayBuffer()
   var allPlayers: Map[String, AbstractSnake] = Map()
